@@ -12,3 +12,10 @@ export type RootStackParamList = {
     Profile: undefined;
     Details: {id: number};
 };
+export interface VagaProps {
+    id: number;
+    title: string;
+    description: string;
+    phone: string;
+    company: string;
+  }

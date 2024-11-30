@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import { Feather } from '@expo/vector-icons';
 import api from '../../services/api';
+
 import { 
     Wrapper,
     Container, 
@@ -17,7 +18,6 @@ import theme from '../../theme';
 import { Button } from '../../components/Button';
 
 import {VagaProps} from "../../utils/Types"
-import { Description } from './styles';
 
 export default function Details({route, navigation }) {
 
@@ -44,7 +44,7 @@ export default function Details({route, navigation }) {
     useEffect(()=>{
         fetchVaga();
     },[id])
-
+    console.log(fetchVaga)
     return (
         <Wrapper>
             <Header>

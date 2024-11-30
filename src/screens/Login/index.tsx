@@ -1,6 +1,6 @@
 import { Image } from 'react-native';
-import {useState} from 'react';
-import { Wrapper,Container, Form, TextContainer, TextBlack, TextLink, TextLinkContainer } from './styles';
+import { useState } from 'react';
+import { Wrapper, Container, Form, TextContainer, TextBlack, TextLink, TextLinkContainer } from './styles';
 
 import api from '../../services/api';
 
@@ -10,58 +10,63 @@ import Input from '../../components/Input';
 import { Button } from '../../components/Button';
 
 export default function Login({ navigation }) {
-
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-
-
+    
     const handleLogin = async () => {
         try {
-            const response = await api.get('/usuarios'); {
-                const users=response.data;
+            // Verificar a resposta da API
+            const response = await api.get('/usuarios');
+            const users = response.data;
 
-                const user=users.find(u=>u.email===email && u.senha===senha)
-                if(user){
-                    navigation.navigate('Auth', { screen: 'Home' });
-                }else{
-                console.log('login falhou');
-                }
-                
+            console.log('Usuários encontrados:', users); // Verificando se os usuários estão sendo retornados corretamente
+
+            // Procurar pelo usuário
+            const user = users.find(u => u.email === email && u.senha === senha);
+            if (user) {
+                console.log('Login bem-sucedido!');
+                // Navegar para a tela 'Home' se o usuário for encontrado
+                navigation.navigate('Auth', { screen: 'Home' });
+            } else {
+                console.log('Login falhou: Usuário não encontrado ou credenciais erradas');
             }
-    } catch(error){
-        console.log(error);
-    }
-    }
+        } catch (error) {
+            console.log('Erro na requisição:', error);
+        }
+    };
+
     return (
         <Wrapper>
             <Image source={BGTop} />
 
             <Container>
-
                 <Form>
                     <Logo />
-                    <Input label='E-mail' placeholder='digite seu e-mail'
-                    value={email}
-                    onChangeText={setEmail} />
-                    <Input label='Senha' placeholder='digite sua senha'
-                    value='senha'
-                    onChangeText={setSenha} />
-                    <Button 
-                    title="Entrar" 
-                    noSpacing={true} 
-                    variant='primary'
-                    onPress={handleLogin}
+                    <Input
+                        label="E-mail"
+                        placeholder="Digite seu e-mail"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+                    <Input
+                        label="Senha"
+                        placeholder="Digite sua senha"
+                        value={senha}
+                        onChangeText={setSenha}
+                    />
+                    <Button
+                        title="Entrar"
+                        noSpacing={true}
+                        variant="primary"
+                        onPress={handleLogin}
                     />
                     <TextContainer>
                         <TextBlack>Não tem uma conta?</TextBlack>
                         <TextLinkContainer onPress={() => navigation.navigate('FormScreen')}>
-                            <TextLink>
-                                    Crie agora mesmo.
-                            </TextLink>
+                            <TextLink>Crie agora mesmo.</TextLink>
                         </TextLinkContainer>
                     </TextContainer>
                 </Form>
-
             </Container>
         </Wrapper>
     );
