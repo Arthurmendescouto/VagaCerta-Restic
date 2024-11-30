@@ -14,7 +14,7 @@ export default function List() {
     const fetchVagas = async () => {
       try {
         const response = await api.get('/vagas');
-        setVagas(response.data.vagas);  // Atualiza 'vagas' com os dados da resposta
+        setVagas(response.data);  // Atualiza 'vagas' com os dados da resposta
       } catch (error) {
         console.error(error);
       } finally {
@@ -31,7 +31,7 @@ export default function List() {
 
       <Container>
         <Logo />
-        <TextVagas>{vagas.length} vagas encontradas!</TextVagas>  {/* Usando 'vagas' aqui */}
+        <TextVagas>{vagas.length} vagas encontradas!</TextVagas>  
         <ListContainer>
           {isLoading ? (
             <Text>Carregando...</Text>
