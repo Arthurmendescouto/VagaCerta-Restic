@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import { Feather } from '@expo/vector-icons';
 import api from '../../services/api';
-
+import { Linking } from 'react-native'; 
 import { 
     Wrapper,
     Container, 
@@ -24,20 +24,29 @@ export default function Details({route, navigation }) {
     const [id,setId]=useState(route.params.id);
     const [vaga, setVaga] = useState<VagaProps>(null);
 
-    const fetchVaga=async()=>{
-        try{
-            const response=await api.get(`vagas/${id}`);
-            const data=response.data;
+    const fetchVaga = async () => {
+        try {
+            const response = await api.get(`vagas/${id}`);
+            const data = response.data;
+            console.log("Dados retornados pela API:", data); // Adicione este log
             setVaga({
-                id:data.id,
-                title:data.title,
-                description:data.descricao,
-                phone:data.telefone,
+                id: data.id,
+                title: data.titulo,
+                description: data.descricao,
+                phone: data.telefone,
                 company: data.empresa
-                
-            })
-        }catch(error){
-            console.log(error);
+            });
+        } catch (error) {
+            console.log("Erro ao buscar vaga:", error);
+        }
+    };
+
+    const handleContactPress = () => {
+        if (vaga && vaga.phone) {
+            const whatsappURL = `https://wa.me/${vaga.phone}?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20a%20vaga%20${vaga.title}.`;
+            Linking.openURL(whatsappURL).catch(err =>
+                console.error('Erro ao abrir o WhatsApp:', err)
+            );
         }
     };
 
@@ -69,6 +78,7 @@ export default function Details({route, navigation }) {
                     title="Entrar em contato" 
                     noSpacing={true} 
                     variant='primary'
+                    onPress={handleContactPress} 
                     />
             </Container>):(
             <Title>Vaga não foi encontrada.</Title>
