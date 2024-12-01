@@ -20,7 +20,7 @@ export default function FormScreen({ navigation }) {
             const novoUsuario = { nome, email, senha };
             await AsyncStorage.setItem('@VagaCerta-RESTIC:nameUser', nome);
             await AsyncStorage.setItem('@VagaCerta-RESTIC:emailUser', email);
-            await AsyncStorage.setItem('VagaCerta-RESTIC:passUser', senha);
+            await AsyncStorage.setItem('@VagaCerta-RESTIC:passUser', senha);
 
             // Envia a requisição POST para adicionar um novo usuário
             const response = await api.post('/usuarios', novoUsuario);
