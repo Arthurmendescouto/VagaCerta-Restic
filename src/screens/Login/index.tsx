@@ -15,19 +15,20 @@ export default function Login({ navigation }) {
     
     const handleLogin = async () => {
         try {
-            // Verificar a resposta da API
             const response = await api.get('/usuarios');
             const users = response.data;
-
-            console.log('Usuários encontrados:', users); // Verificando se os usuários estão sendo retornados corretamente
-
-            // Procurar pelo usuário
+    
             const user = users.find(u => u.email === email && u.senha === senha);
-            const emailUser = await AsyncStorage.getItem('@VagaCerta-RESTIC:emailUser')
-            const passUser = await AsyncStorage.getItem('@VagaCerta-RESTIC:passUser')
-            if (user || (emailUser == email && passUser == senha)) {
+            const emailUser = await AsyncStorage.getItem('@VagaCerta-RESTIC:emailUser');
+            const passUser = await AsyncStorage.getItem('@VagaCerta-RESTIC:passUser');
+    
+            if (user || (emailUser === email && passUser === senha)) {
                 console.log('Login bem-sucedido!');
-                // Navegar para a tela 'Home' se o usuário for encontrado
+                
+                // Armazenar o ID do usuário no AsyncStorage
+                await AsyncStorage.setItem('@VagaCerta-RESTIC:userId', user.id.toString());  // Supondo que o ID seja um campo chamado 'id'
+    
+                // Navegar para a tela 'Home'
                 navigation.navigate('Auth', { screen: 'Home' });
             } else {
                 console.log('Login falhou: Usuário não encontrado ou credenciais erradas');
