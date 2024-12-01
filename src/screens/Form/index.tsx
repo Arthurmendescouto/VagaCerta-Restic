@@ -6,6 +6,7 @@ import Logo from '../../components/Logo';
 import Input from '../../components/Input';
 import { Button } from '../../components/Button';
 import api from '../../services/api'; // Importando a configuração do Axios
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function FormScreen({ navigation }) {
     // Estado para armazenar os valores do formulário
@@ -17,6 +18,9 @@ export default function FormScreen({ navigation }) {
     const handleSubmit = async () => {
         try {
             const novoUsuario = { nome, email, senha };
+            await AsyncStorage.setItem('@VagaCerta-RESTIC:nameUser', nome);
+            await AsyncStorage.setItem('@VagaCerta-RESTIC:emailUser', email);
+            await AsyncStorage.setItem('VagaCerta-RESTIC:passUser', senha);
 
             // Envia a requisição POST para adicionar um novo usuário
             const response = await api.post('/usuarios', novoUsuario);
