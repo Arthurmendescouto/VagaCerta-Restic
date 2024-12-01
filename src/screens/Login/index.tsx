@@ -25,7 +25,7 @@ export default function Login({ navigation }) {
             const user = users.find(u => u.email === email && u.senha === senha);
             const emailUser = await AsyncStorage.getItem('@VagaCerta-RESTIC:emailUser')
             const passUser = await AsyncStorage.getItem('@VagaCerta-RESTIC:passUser')
-            if (user && emailUser == email && passUser == senha) {
+            if (user || (emailUser == email && passUser == senha)) {
                 console.log('Login bem-sucedido!');
                 // Navegar para a tela 'Home' se o usuário for encontrado
                 navigation.navigate('Auth', { screen: 'Home' });
