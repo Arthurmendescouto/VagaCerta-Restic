@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import api from '../../services/api';
 import { Linking } from 'react-native'; 
@@ -17,12 +17,12 @@ import Logo from '../../components/Logo';
 import theme from '../../theme';
 import { Button } from '../../components/Button';
 
-import {VagaProps} from "../../utils/Types"
+import { VagaProps } from "../../utils/Types";
 
-export default function Details({route, navigation }) {
+export default function Details({ route, navigation }) {
 
-    const [id,setId]=useState(route.params.id);
-    const [vaga, setVaga] = useState<VagaProps>(null);
+    const [id, setId] = useState(route.params.id);
+    const [vaga, setVaga] = useState<VagaProps | null>(null);
 
     const fetchVaga = async () => {
         try {
@@ -34,7 +34,8 @@ export default function Details({route, navigation }) {
                 title: data.titulo,
                 description: data.descricao,
                 phone: data.telefone,
-                company: data.empresa
+                company: data.empresa,
+                status: data.status // **Adicionado este campo**
             });
         } catch (error) {
             console.log("Erro ao buscar vaga:", error);
@@ -50,10 +51,10 @@ export default function Details({route, navigation }) {
         }
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchVaga();
-    },[id])
-    console.log(fetchVaga)
+    }, [id]);
+
     return (
         <Wrapper>
             <Header>
@@ -68,24 +69,25 @@ export default function Details({route, navigation }) {
                 <Logo />
             </Header>
 
-            {vaga?(<Container>
-                <ContentContainer>
-                    <Title>{vaga.title}</Title>
-                    <Description>{vaga.description}</Description>
-                </ContentContainer>
+            {vaga ? (
+                <Container>
+                    <ContentContainer>
+                        <Title>{vaga.title}</Title>
+                        <Description>{vaga.description}</Description>
+                    </ContentContainer>
 
-                <Button 
-                    title="Entrar em contato" 
-                    noSpacing={true} 
-                    variant='primary'
-                    onPress={handleContactPress} 
-                    />
-            </Container>):(
-            <Title>Vaga não foi encontrada.</Title>
-
+                    {vaga.status === "aberta" && ( 
+                        <Button 
+                            title="Entrar em contato" 
+                            noSpacing={true} 
+                            variant='primary'
+                            onPress={handleContactPress} 
+                        />
+                    )}
+                </Container>
+            ) : (
+                <Title>Vaga não foi encontrada.</Title>
             )}
-
-            
         </Wrapper>
     );
 }

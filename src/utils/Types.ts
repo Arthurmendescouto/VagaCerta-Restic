@@ -18,4 +18,5 @@ export interface VagaProps {
     description: string;
     phone: string;
     company: string;
+    status: string; 
   }
