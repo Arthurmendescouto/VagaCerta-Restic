@@ -1,7 +1,7 @@
 import { Image } from 'react-native';
 import { useState } from 'react';
 import { Wrapper, Container, Form, TextContainer, TextBlack, TextLink, TextLinkContainer } from './styles';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../services/api';
 
 import BGTop from '../../assets/BGTop.png';
