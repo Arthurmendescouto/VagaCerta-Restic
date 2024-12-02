@@ -94,8 +94,9 @@ Para o app funcionar corretamente, a API do projeto deve estar rodando. Siga os 
 
 2. Siga as instruções do repositório da API para configurá-la e iniciá-la.
 
-2. Certifique-se de que a API está acessível no endereço configurado no Axios dentro do app. O endereço pode ser configurado no arquivo:
-   ```bash
-const api = axios.create({
-    baseURL: 'http://<seu-endereco-da-api>:<porta>', // Altere conforme necessário
-});
+3. Certifique-se de que a API está acessível no endereço configurado no Axios dentro do app. O endereço pode ser configurado no arquivo:
+   ```javascript
+   const api = axios.create({
+       baseURL: 'http://<seu-endereco-da-api>:<porta>', // Altere conforme necessário
+   });
+
