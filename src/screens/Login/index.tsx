@@ -1,8 +1,9 @@
 import { Image } from 'react-native';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Wrapper, Container, Form, TextContainer, TextBlack, TextLink, TextLinkContainer } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../services/api';
+import { UserContext } from '../../../Context/UserContext';
 
 import BGTop from '../../assets/BGTop.png';
 import Logo from '../../components/Logo';
@@ -12,6 +13,7 @@ import { Button } from '../../components/Button';
 export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const { login } = useContext(UserContext);
     
     const handleLogin = async () => {
         try {
@@ -19,14 +21,18 @@ export default function Login({ navigation }) {
             const users = response.data;
     
             const user = users.find(u => u.email === email && u.senha === senha);
-            const emailUser = await AsyncStorage.getItem('@VagaCerta-RESTIC:emailUser');
-            const passUser = await AsyncStorage.getItem('@VagaCerta-RESTIC:passUser');
     
-            if (user || (emailUser === email && passUser === senha)) {
+            if (user) {
+                login(user);
                 console.log('Login bem-sucedido!');
                 
                 // Armazenar o ID do usuário no AsyncStorage
                 await AsyncStorage.setItem('@VagaCerta-RESTIC:userId', user.id.toString());  // Supondo que o ID seja um campo chamado 'id'
+                try{
+                    await AsyncStorage.setItem('@user_data', JSON.stringify(user));
+                }catch(e){
+                    console.error('Erro ao salvar dados do usuário');
+                }
     
                 // Navegar para a tela 'Home'
                 navigation.navigate('Auth', { screen: 'Home' });

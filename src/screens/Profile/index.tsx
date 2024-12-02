@@ -15,6 +15,7 @@ import Input from '../../components/Input';
 import { Button } from '../../components/Button';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../services/api';
+import LogoutButton from '../../components/LogoutButton';
 
 export default function Profile({navigation }) {
     const [nome, setNome] = useState('');
@@ -79,6 +80,7 @@ export default function Profile({navigation }) {
                     <ButtonText>
                         Voltar
                     </ButtonText>
+                    <LogoutButton />
                 </HeaderButtonContainer>
                 <Logo />
             </Header>
