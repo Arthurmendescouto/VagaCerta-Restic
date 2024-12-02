@@ -4,6 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { UserProvider } from './Context/UserContext';
+import { Routes } from './src/utils/Routes';
 
 import theme from './src/theme';
 
@@ -47,12 +49,12 @@ function Auth(){
       <Tab.Screen name="Home">
           {() => (
             <HomeStack.Navigator screenOptions={{ headerShown: false }}>
-              <HomeStack.Screen name="List" component={List} />
-              <HomeStack.Screen name="Details" component={Details} />
+              <HomeStack.Screen name={Routes.LIST} component={List} />
+              <HomeStack.Screen name={Routes.DETAILS} component={Details} />
             </HomeStack.Navigator>
           )}
       </Tab.Screen>
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name={Routes.PROFILE} component={Profile} />
     </Tab.Navigator>
   )
 }
@@ -60,15 +62,16 @@ function Auth(){
 
 export default function App() {
   return (
+    <UserProvider>
     <ThemeProvider theme={theme}>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="FormScreen" component={FormScreen} />
-          <Stack.Screen name="Auth" component={Auth} />
+        <Stack.Navigator initialRouteName={Routes.LOGIN} screenOptions={{ headerShown: false }}>
+          <Stack.Screen name={Routes.LOGIN}  component={Login} />
+          <Stack.Screen name={Routes.FORMSCREEN} component={FormScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
+    </UserProvider>
   );
 }

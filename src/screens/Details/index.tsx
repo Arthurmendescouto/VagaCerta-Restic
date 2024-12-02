@@ -16,7 +16,7 @@ import {
 import Logo from '../../components/Logo';
 import theme from '../../theme';
 import { Button } from '../../components/Button';
-
+import LogoutButton from '../../components/LogoutButton';
 import { VagaProps } from "../../utils/Types";
 
 export default function Details({ route, navigation }) {
@@ -65,6 +65,7 @@ export default function Details({ route, navigation }) {
                     <ButtonText>
                         Voltar
                     </ButtonText>
+                    <LogoutButton />
                 </HeaderButtonContainer>
                 <Logo />
             </Header>
