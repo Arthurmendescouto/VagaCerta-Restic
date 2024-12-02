@@ -1,3 +1,5 @@
+import { StackNavigationProp } from '@react-navigation/stack';
+
 export type TaskProps = {
     id: number;
     title: String;
@@ -20,3 +22,5 @@ export interface VagaProps {
     company: string;
     status: string; 
   }
+
+  export type RootNavigationProp = StackNavigationProp<RootStackParamList>;

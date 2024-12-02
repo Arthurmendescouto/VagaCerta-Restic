@@ -14,6 +14,7 @@ import FormScreen  from './src/screens/Form';
 import List  from './src/screens/List';
 import Profile  from './src/screens/Profile';
 import Details  from './src/screens/Details';
+import { RootNavigator } from './src/screens/navigator.root';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -66,10 +67,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar style="auto" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName={Routes.LOGIN} screenOptions={{ headerShown: false }}>
-          <Stack.Screen name={Routes.LOGIN}  component={Login} />
-          <Stack.Screen name={Routes.FORMSCREEN} component={FormScreen} />
-        </Stack.Navigator>
+        <RootNavigator />
       </NavigationContainer>
     </ThemeProvider>
     </UserProvider>
