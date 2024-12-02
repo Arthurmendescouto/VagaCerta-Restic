@@ -35,7 +35,7 @@ export default function Login({ navigation }) {
                 }
     
                 // Navegar para a tela 'Home'
-                navigation.navigate('Auth', { screen: 'Home' });
+                navigation.navigate('Home', { screen: 'Home' });
             } else {
                 console.log('Login falhou: Usuário não encontrado ou credenciais erradas');
             }
