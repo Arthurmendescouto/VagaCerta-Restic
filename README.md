@@ -1,6 +1,6 @@
 # **Vaga Certa - App Mobile**
 
-Um aplicativo mobile desenvolvido em React Native que permite gerenciar cadastros de usuários, consultar vagas abertas e encerradas, adicionar ou atualizar usuários, e entrar em contato com recrutadores via WhatsApp. 
+Um aplicativo mobile desenvolvido em React Native que permite gerenciar cadastros de usuários, consultar vagas abertas e encerradas, adicionar ou atualizar usuários, e entrar em contato com recrutadores via WhatsApp.
 
 ---
 
@@ -94,9 +94,50 @@ Para o app funcionar corretamente, a API do projeto deve estar rodando. Siga os 
 
 2. Siga as instruções do repositório da API para configurá-la e iniciá-la.
 
-3. Certifique-se de que a API está acessível no endereço configurado no Axios dentro do app. O endereço pode ser configurado no arquivo:
+3. Configure o arquivo `api.ts` no diretório `services`. Atualize a propriedade `baseURL` para usar o IPv4 da sua máquina. Para descobrir o IPv4:
+
+   - **No Windows**, abra o prompt de comando e digite:
+     ```bash
+     ipconfig
+     ```
+    - **No macOS/Linux**, abra o terminal e digite:
+    ```bash
+    ifconfig
+
+4. Substitua `<seu-endereco-da-api>` no arquivo `api.ts` pelo seu IPv4 seguido da porta 3000. Por exemplo:
+
    ```javascript
    const api = axios.create({
-       baseURL: 'http://<seu-endereco-da-api>:<porta>', // Altere conforme necessário
+       baseURL: 'http://192.168.0.100:3000', // Substitua pelo seu IPv4
    });
 
+## **Contato e Suporte**
+
+Se você tiver dúvidas ou encontrar problemas, sinta-se à vontade para entrar em contato:
+
+- **E-mail**: [contato@seuprojeto.com](mailto:contato@seuprojeto.com)
+- **WhatsApp**: +55 11 91234-5678
+
+## **Contribuindo**
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. Faça um fork do repositório.
+
+2. Crie uma branch para suas alterações:
+   ```bash
+   git checkout -b minha-nova-feature
+
+3. Faça o commit das suas alterações:
+   ```bash
+   git commit -m "Adiciona nova funcionalidade"
+
+4. Envie para o repositório remoto:
+   ```bash
+   git push origin minha-nova-feature
+
+5. Abra um Pull Request.
+
+## **Licença**
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
