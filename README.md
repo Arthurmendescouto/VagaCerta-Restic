@@ -45,7 +45,7 @@ Antes de rodar o projeto, certifique-se de ter instalado em sua máquina:
 
 - [Node.js](https://nodejs.org/) (versão recomendada: 16.x ou superior)
 - [Yarn](https://yarnpkg.com/) (instalado globalmente)
-
+-[Expo versão 51 no celular](https://expo.dev/go?sdkVersion=51&platform=android&device=true )
 ---
 
 ## **Instalação**
@@ -72,7 +72,7 @@ Antes de rodar o projeto, certifique-se de ter instalado em sua máquina:
 
 1. Inicie o ambiente de desenvolvimento do React Native:
    ```bash
-   yarn start
+   npx expo start
 
 ## **Conexão com a API**
 
