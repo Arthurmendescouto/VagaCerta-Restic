@@ -18,6 +18,7 @@ import theme from '../../theme';
 import { Button } from '../../components/Button';
 
 import { VagaProps } from "../../utils/Types";
+import { Text } from 'react-native'; // Import do Text para mensagem de encerramento
 
 export default function Details({ route, navigation }) {
 
@@ -28,14 +29,14 @@ export default function Details({ route, navigation }) {
         try {
             const response = await api.get(`vagas/${id}`);
             const data = response.data;
-            console.log("Dados retornados pela API:", data); // Adicione este log
+            console.log("Dados retornados pela API:", data);
             setVaga({
                 id: data.id,
                 title: data.titulo,
                 description: data.descricao,
                 phone: data.telefone,
                 company: data.empresa,
-                status: data.status // **Adicionado este campo**
+                status: data.status
             });
         } catch (error) {
             console.log("Erro ao buscar vaga:", error);
@@ -74,6 +75,12 @@ export default function Details({ route, navigation }) {
                     <ContentContainer>
                         <Title>{vaga.title}</Title>
                         <Description>{vaga.description}</Description>
+
+                        {vaga.status === "encerrada" && (
+                            <Text style={{ color: 'red', fontWeight: 'bold', marginTop: 10, textAlign: 'center' }}>
+                                Vaga encerrada
+                            </Text>
+                        )}
                     </ContentContainer>
 
                     {vaga.status === "aberta" && ( 
