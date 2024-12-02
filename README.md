@@ -76,7 +76,7 @@ Antes de rodar o projeto, certifique-se de ter instalado em sua máquina:
 
 ## **Conexão com a API**
 
-Para o app funcionar corretamente, a API do projeto deve estar rodando. Siga os passos abaixo para configurar a API:
+Para o app funcionar corretamente, a API do projeto deve estar rodando. Siga os passos abaixo para configurar a API em outro repositório:
 
 1. Clone o repositório da API:
    ```bash
