@@ -74,16 +74,6 @@ Antes de rodar o projeto, certifique-se de ter instalado em sua máquina:
    ```bash
    yarn start
 
-2. Para rodar no Android:
-   ```bash
-   yarn android
-
-3. Para rodar no iOS (apenas em sistemas macOS com Xcode configurado):
-   ```bash
-   yarn ios
-
-4. Para rodar no iOS (apenas em sistemas macOS com Xcode configurado):
-
 ## **Conexão com a API**
 
 Para o app funcionar corretamente, a API do projeto deve estar rodando. Siga os passos abaixo para configurar a API:
